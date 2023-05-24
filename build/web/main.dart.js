@@ -70422,7 +70422,7 @@ A.ab1.prototype={
 $1(a){var s=a.b,r=a.a
 if(B.c.cd(A.lr(s,r),"List<"))return"        '"+A.lO(r)+"': "+A.h(r)+"?.map((e) => e.toJson()).toList(),"
 else if(t.f.b(s))return"        '"+A.lO(r)+"': "+A.h(r)+"?.toJson(),"
-else return"        '"+A.lO(r)+"': "+A.h(r)+","},
+else return"        '"+A.h(r)+"': "+A.lO(r)+","},
 $S:61}
 A.ab2.prototype={
 $2(a,b){var s,r,q,p,o=this,n=t.P
