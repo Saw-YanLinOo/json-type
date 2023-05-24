@@ -495,7 +495,7 @@ void _generateClass(
       } else if (e.value is Map) {
         return "        '${e.key.camelCase}': ${e.key}?.toJson(),";
       } else {
-        return "        '${e.key.camelCase}': ${e.key},";
+        return "        '${e.key}': ${e.key.camelCase},";
       }
     }), "\n")
     ..writeln()
