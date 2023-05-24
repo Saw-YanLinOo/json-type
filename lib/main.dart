@@ -456,14 +456,15 @@ void _generateClass(
 
   jsonMap.forEach((key, dynamic value) {
     final type = _getType(value, key);
-    buffer.writeln('    final $type? $key;');
+    buffer.writeln('    final $type? ${key.camelCase};');
   });
 
   // Unnamed constructor
   buffer
     ..writeln()
     ..writeln('    $className({')
-    ..writeAll(jsonMap.entries.map((e) => '        this.${e.key}, '), "\n")
+    ..writeAll(
+        jsonMap.entries.map((e) => '        this.${e.key.camelCase}, '), "\n")
     ..writeln()
     ..writeln('    });')
 
@@ -474,11 +475,11 @@ void _generateClass(
     ..writeAll(jsonMap.entries.map((e) {
       final type = _getType(e.value, e.key);
       if (type.startsWith('List<')) {
-        return "        ${e.key}: (json['${e.key}'] as List<dynamic>?)?.map((e) => ${type.substring(5, type.length - 1)}.fromJson(e as Map<String, dynamic>)).toList(),";
+        return "        ${e.key.camelCase}: (json['${e.key}'] as List<dynamic>?)?.map((e) => ${type.substring(5, type.length - 1)}.fromJson(e as Map<String, dynamic>)).toList(),";
       } else if (e.value is Map) {
-        return "        ${e.key}: json['${e.key}'] !=null ? ${_getType(e.value, e.key)}.fromJson(json['${e.key}'] as Map<String, dynamic>) : null,";
+        return "        ${e.key.camelCase}: json['${e.key}'] !=null ? ${_getType(e.value, e.key)}.fromJson(json['${e.key}'] as Map<String, dynamic>) : null,";
       } else {
-        return "        ${e.key}: json['${e.key}'] != null ? json['${e.key}'] as ${_getType(e.value, e.key)}? : null,";
+        return "        ${e.key.camelCase}: json['${e.key}'] != null ? json['${e.key}'] as ${_getType(e.value, e.key)}? : null,";
       }
     }), "\n")
     ..writeln()
@@ -490,11 +491,11 @@ void _generateClass(
     ..writeAll(jsonMap.entries.map((e) {
       final type = _getType(e.value, e.key);
       if (type.startsWith('List<')) {
-        return "        '${e.key}': ${e.key}?.map((e) => e.toJson()).toList(),";
+        return "        '${e.key.camelCase}': ${e.key}?.map((e) => e.toJson()).toList(),";
       } else if (e.value is Map) {
-        return "        '${e.key}': ${e.key}?.toJson(),";
+        return "        '${e.key.camelCase}': ${e.key}?.toJson(),";
       } else {
-        return "        '${e.key}': ${e.key},";
+        return "        '${e.key.camelCase}': ${e.key},";
       }
     }), "\n")
     ..writeln()

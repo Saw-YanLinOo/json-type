@@ -20,6 +20,21 @@ extension Formatter on String {
   }
 }
 
+extension Capitalizer on String {
+  String get camelCase {
+    List<String> words = split('_');
+    String camelCase = words[0];
+
+    for (int i = 1; i < words.length; i++) {
+      String capitalizedWord =
+          words[i][0].toUpperCase() + words[i].substring(1);
+      camelCase += capitalizedWord;
+    }
+
+    return camelCase;
+  }
+}
+
 extension Validator on String {
   bool get isJson {
     try {
