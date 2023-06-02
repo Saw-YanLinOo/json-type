@@ -1,6 +1,10 @@
 # json_type
 
-A new Flutter project.
+Json to Data Transfer Object.
+
+# UI
+
+web - https://jsontype.vercel.app
 
 ## Getting Started
 
